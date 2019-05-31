@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types'
 import getCss from '../get-css'
-import { PropEnhancerValueType, PropValidators, PropEnhancers, PropTypesMapping, PropAliases } from '../types/enhancers'
+import {
+  PropEnhancerValueType,
+  PropValidators,
+  PropEnhancers,
+  PropTypesMapping,
+  PropAliases
+} from '../types/enhancers'
 
 export const propTypes: PropTypesMapping = {
   boxSizing: PropTypes.string,
@@ -51,9 +57,9 @@ export const propEnhancers: PropEnhancers = {
   boxSizing: (value: PropEnhancerValueType) => getCss(boxSizing, value),
   clear: (value: PropEnhancerValueType) => getCss(clear, value),
   clearfix: () => ({
-    className: '📦clearfix',
+    className: 'ui_box-clearfix',
     styles: `
-.📦clearfix:before, .📦clearfix:after {
+.ui_box-clearfix:before, .ui_box-clearfix:after {
   display: table;
   clear: both;
   content: "";

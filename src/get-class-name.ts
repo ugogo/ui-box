@@ -13,7 +13,10 @@ export interface PropertyInfo {
 /**
  * Generates the class name.
  */
-export default function getClassName(propertyInfo: PropertyInfo, value: string) {
+export default function getClassName(
+  propertyInfo: PropertyInfo,
+  value: string
+) {
   const {
     className,
     safeValue = false, // Value never contains unsafe characters. e.g: 10, hidden, border-box
@@ -35,5 +38,5 @@ export default function getClassName(propertyInfo: PropertyInfo, value: string) 
     valueKey = getSafeValue(value)
   }
 
-  return `📦${className}_${valueKey}`
+  return `ui_box-${className}_${valueKey}`
 }

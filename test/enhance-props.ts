@@ -9,67 +9,67 @@ test.afterEach.always(() => {
 })
 
 test.serial('enhances a prop', t => {
-  const {className, enhancedProps} = enhanceProps({width: 10})
-  t.is(className, '📦w_10px')
+  const { className, enhancedProps } = enhanceProps({ width: 10 })
+  t.is(className, 'ui_box-w_10px')
   t.deepEqual(enhancedProps, {})
 })
 
 test.serial('expands aliases', t => {
-  const {className, enhancedProps} = enhanceProps({margin: 11})
-  t.is(className, '📦mb_11px 📦ml_11px 📦mr_11px 📦mt_11px')
+  const { className, enhancedProps } = enhanceProps({ margin: 11 })
+  t.is(className, 'ui_box-mb_11px ui_box-ml_11px ui_box-mr_11px ui_box-mt_11px')
   t.deepEqual(enhancedProps, {})
 })
 
 test.serial('injects styles', t => {
-  enhanceProps({width: 12})
+  enhanceProps({ width: 12 })
   t.is(
     styles.getAll(),
     `
-.📦w_12px {
+.ui_box-w_12px {
   width: 12px;
 }`
   )
 })
 
 test.serial('uses the cache', t => {
-  enhanceProps({width: 13})
-  enhanceProps({width: 13})
+  enhanceProps({ width: 13 })
+  enhanceProps({ width: 13 })
   t.is(
     styles.getAll(),
     `
-.📦w_13px {
+.ui_box-w_13px {
   width: 13px;
 }`
   )
-  t.is(cache.get('width', 13), '📦w_13px')
+  t.is(cache.get('width', 13), 'ui_box-w_13px')
 })
 
 test.serial('strips falsey enhancer props', t => {
-  const {className, enhancedProps} = enhanceProps({width: false})
+  const { className, enhancedProps } = enhanceProps({ width: false })
   t.is(className, '')
   t.deepEqual(enhancedProps, {})
 })
 
 test.serial('does not strip enhancer props with 0 values', t => {
-  const {className, enhancedProps} = enhanceProps({width: 0})
-  t.is(className, '📦w_0px')
+  const { className, enhancedProps } = enhanceProps({ width: 0 })
+  t.is(className, 'ui_box-w_0px')
   t.deepEqual(enhancedProps, {})
 })
 
 test.serial('passes through non-enhancer props', t => {
-  const {className, enhancedProps} = enhanceProps({disabled: true})
+  const { className, enhancedProps } = enhanceProps({ disabled: true })
   t.is(className, '')
-  t.deepEqual(enhancedProps, {disabled: true})
+  t.deepEqual(enhancedProps, { disabled: true })
 })
 
 test.serial('passes through falsey non-enhancer props', t => {
-  const {className, enhancedProps} = enhanceProps({disabled: false})
+  const { className, enhancedProps } = enhanceProps({ disabled: false })
   t.is(className, '')
-  t.deepEqual(enhancedProps, {disabled: false})
+  t.deepEqual(enhancedProps, { disabled: false })
 })
 
 test.serial('handles invalid values', t => {
-  const {className, enhancedProps} = enhanceProps({minWidth: true})
+  const { className, enhancedProps } = enhanceProps({ minWidth: true })
   t.is(className, '')
   t.deepEqual(enhancedProps, {})
 })
